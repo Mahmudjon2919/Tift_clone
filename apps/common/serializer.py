@@ -13,3 +13,13 @@ class DistrictsSerializer(serializers.ModelSerializer):
     class Meta:
         model=District
         fields=("id", "title")
+
+
+class SocialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Social
+        fields=("id", "title", "social", "link")
+
+#class GenderSerializer(serializers.Serializer):
+ #   key=serializers.CharField()
+  #  value=serializers.CharField()

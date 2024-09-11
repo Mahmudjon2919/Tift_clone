@@ -13,5 +13,13 @@ class NewsContent(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            self.slug = slugify(self.title)
+            counter=0
+            original_slug = slugify(self.title)
+            slug=original_slug
+            while NewsContent.objects.filter(slug=slug).exists():
+                slug=original_slug
+                slug=f"{slug}-{counter}"
+                counter+=1
+
+            self.slug=slug
         return super().save(*args, **kwargs)

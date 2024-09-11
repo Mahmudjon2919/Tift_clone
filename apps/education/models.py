@@ -39,5 +39,9 @@ class Direction(models.Model):
     title=models.CharField(max_length=255)
     language=models.CharField(choices=LanguageChoices.choices, max_length=255)
     body=RichTextField()
-    faculty=models.ForeignKey(Faculty, on_delete=models.CASCADE)
-    education_type=models.CharField(choices=EducationTypeChoices.choices, max_length=16)
+    faculty=models.ForeignKey(Faculty, on_delete=models.CASCADE, related_name="directions")
+    education_type=models.CharField(choices=EducationTypeChoices.choices, max_length=16)\
+
+
+    def __str__(self):
+        return self.title

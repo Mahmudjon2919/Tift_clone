@@ -20,9 +20,9 @@ from apps.telegram.views import message_handler
 
 urlpatterns = [
     path('webhook/', message_handler),
-    #path("api/v1/", include("apps.news.urls")),
-    #path("api/v1/", include("apps.education.urls")),
-    #path("api/v1/", include("apps.application.urls")),
+    path("api/v1/", include("apps.news.urls")),
+    path("api/v1/", include("apps.education.urls")),
+    path("api/v1/", include("apps.application.urls")),
     path('admin/', admin.site.urls),
     path("api/v1/", include("apps.common.urls"))
 ]

@@ -141,8 +141,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from core.ckeditor_config import CKEDITOR_CONFIGS
-
-
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
 CSRF_TRUSTED_ORIGINS = [
-    'https://2da8-37-110-215-64.ngrok-free.app',
+    'https://a5f6-95-214-211-176.ngrok-free.app',
 ]
