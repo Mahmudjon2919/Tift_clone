@@ -43,4 +43,4 @@ class FacultyDetailSerializer(serializers.ModelSerializer):
         return obj.get_degree_display()
 
     def get_yangi_field(self, obj):
-        return "Nimagap"
+        return obj.some_yangi_field_value

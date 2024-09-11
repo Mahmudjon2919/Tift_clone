@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'apps.users',
     'rest_framework',
     'ckeditor',
-
+    'drf_yasg',
 
 ]
 
@@ -73,7 +73,9 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "templates"
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,5 +148,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100
 }
 CSRF_TRUSTED_ORIGINS = [
-    'https://a5f6-95-214-211-176.ngrok-free.app',
+    'https://608f-86-62-2-249.ngrok-free.app/',
 ]
+
+
+HOST_NAME="http://127.0.0.1:8000"
+CONTRACT_URL="contracts"
+CONTRACT_ROOT=BASE_DIR /"contracts"
