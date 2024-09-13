@@ -3,9 +3,10 @@ from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Filters, Co
 
 from apps.telegram import states
 from apps.telegram.handlers import commands, common, registration
+from django.conf import settings
 
-BOT_TOKEN = "6619045547:AAEKrrh4qoyn3QvSeYQlpNvt035nYielJlo"
-bot = Bot(token=BOT_TOKEN)
+
+bot = Bot(token=settings.BOT_TOKEN)
 
 dispatcher = Dispatcher(bot, None, workers=0)
 

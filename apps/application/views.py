@@ -22,9 +22,15 @@ class ApplicationStatusesListAPIView(ListAPIView):
 class StudentApplicationTemplateview(TemplateView):
     template_name = "application.html"
 
-
     def get_context_data(self, **kwargs):
-        context=super().get_context_data(**kwargs)
-        application_id=self.request.GET.get("application_id")
-        context['application']=Application.objects.get(id=application_id)
+        context = super().get_context_data(**kwargs)
+        application_id = self.request.GET.get("application_id")
+
+        try:
+            if application_id:
+                context['application'] = Application.objects.get(id=application_id)
+        except Application.DoesNotExist:
+            context['application'] = None
+            context['error_message'] = "Application not found"
+
         return context

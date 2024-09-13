@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 #import os
 #import django
@@ -29,10 +30,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ln^liqwz-sn(+)s#6dc)s!gn%tbhq-!ms^63vs&($9s3il3x!l'
+SECRET_KEY =config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(config("DEBUG", default=False)))
 
 ALLOWED_HOSTS = ['*']
 
@@ -152,6 +153,8 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
-HOST_NAME="http://127.0.0.1:8000"
+HOST_NAME=config("HOST_NAME")
 CONTRACT_URL="contracts"
 CONTRACT_ROOT=BASE_DIR /"contracts"
+
+BOT_TOKEN = config("BOT_TOKEN")
