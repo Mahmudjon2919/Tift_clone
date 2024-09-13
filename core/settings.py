@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 #import os
 #import django
@@ -35,7 +36,7 @@ SECRET_KEY =config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(config("DEBUG", default=False)))
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(","),
 
 
 # Application definition
@@ -102,6 +103,7 @@ DATABASES = {
     }
 }
 
+DATABASES['default'] = dj_database_url.parse(config("DATABASE_URL"))
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -148,9 +150,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100
 }
-CSRF_TRUSTED_ORIGINS = [
-    'https://608f-86-62-2-249.ngrok-free.app/',
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://608f-86-62-2-249.ngrok-free.app/',
+# ]
 
 
 HOST_NAME=config("HOST_NAME")
