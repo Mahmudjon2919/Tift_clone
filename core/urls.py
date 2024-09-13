@@ -27,6 +27,7 @@ from django.conf.urls.static import static
 
 
 
+
 schema_view = get_schema_view(
    openapi.Info(
       title="Snippets API",
@@ -48,7 +49,8 @@ urlpatterns = [
     path("api/v1/", include("apps.education.urls")),
     path("api/v1/", include("apps.application.urls")),
     path('admin/', admin.site.urls),
-    path("api/v1/", include("apps.common.urls"))
+    path("api/v1/", include("apps.common.urls")),
+    #path("Homepage", include('Home.html'))
 ]
 
 if settings.DEBUG:

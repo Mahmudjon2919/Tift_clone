@@ -8,8 +8,8 @@ from django.urls import reverse
 
 
 class Gender(models.TextChoices):
-    MALE = "male", "Male"
-    FEMALE = "female", "Female"
+    MALE = "male", "Erkak"
+    FEMALE = "female", "Ayol"
 
 class ApplicationStatusChoices(models.TextChoices):
     PENDING = "pending", "Pending"
@@ -41,15 +41,19 @@ class Application(models.Model):
         from django.conf import settings
         import os
 
-        if (self.status == ApplicationStatusChoices.ACCEPTED or self.status == ApplicationStatusChoices.REJECTED) and not self.accepted_at:
-            if self.status==ApplicationStatusChoices.ACCEPTED:
+        if (
+                self.status == ApplicationStatusChoices.ACCEPTED or self.status == ApplicationStatusChoices.REJECTED) and not self.accepted_at:
+            if self.status == ApplicationStatusChoices.ACCEPTED:
                 if not os.path.exists("contracts"):
                     os.makedirs("contracts")
-                file_name=f"contacts/{self.first_name}-{self.last_name}.pdf"
-                HTML(f"{settings.HOST_NAME}{reverse('application_generator')}?application_id={self.pk}").write_pdf(file_name)
 
-                self.contract_url=file_name
 
+                file_name = f"contracts/{self.first_name}-{self.last_name}.pdf"
+
+                HTML(f"{settings.HOST_NAME}{reverse('application_generator')}?application_id={self.pk}").write_pdf(
+                    file_name)
+
+                self.contract_url = file_name
 
             self.accepted_at = datetime.now()
-        return  super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)

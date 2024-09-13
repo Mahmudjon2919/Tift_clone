@@ -1,8 +1,9 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from models import NewsContent
+from .models import NewsContent
 from datetime import datetime
+
 
 class NewsContentAPITestCase(APITestCase):
     def setUp(self):

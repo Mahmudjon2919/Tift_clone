@@ -27,10 +27,10 @@ class Director(models.Model):
 
 
 class Faculty(models.Model):
-    title=models.CharField(max_length=255)
-    body=RichTextField()
-    degree=models.CharField(max_length=255, choices=EducationDegreeChoices.choices)
-    director=models.ForeignKey(Director, on_delete=models.SET_NULL, null=True, blank=True)
+    title = models.CharField(max_length=255)
+    body = RichTextField()
+    degree = models.CharField(max_length=255, choices=EducationDegreeChoices.choices)
+    director = models.ForeignKey(Director, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.title

@@ -11,7 +11,7 @@ class FacultyListSerializer(serializers.ModelSerializer):
 class DirectorModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Director
-        fields = ("ful_name", "bio", "phone_number", "picture")
+        fields = ("full_name", "bio", "phone_number", "picture")
 
 
 class DirectionModelSerializer(serializers.ModelSerializer):
@@ -33,7 +33,7 @@ class FacultyDetailSerializer(serializers.ModelSerializer):
     director = DirectorModelSerializer()
     directions = DirectionModelSerializer(many=True)
     degree = serializers.SerializerMethodField()
-    yangi_field = serializers.SerializerMethodField
+    yangi_field = serializers.SerializerMethodField()
 
     class Meta:
         model = Faculty
@@ -43,4 +43,4 @@ class FacultyDetailSerializer(serializers.ModelSerializer):
         return obj.get_degree_display()
 
     def get_yangi_field(self, obj):
-        return obj.some_yangi_field_value
+        return "Yangi field"

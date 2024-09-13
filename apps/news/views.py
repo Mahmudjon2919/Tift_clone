@@ -6,7 +6,7 @@ from django.utils import timezone
 class NewsContentListAPIView(ListAPIView):
     queryset = NewsContent.objects.filter(
         is_published=True,
-        publish_time__gte=timezone.now()
+        publish_time__lte=timezone.now()
     ).order_by("-id")
     serializer_class = NewsContentSerializer
 
