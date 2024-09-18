@@ -12,15 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import dj_database_url
 
-#import os
-#import django
 
-#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')  # Replace with your project settings
-#django.setup()
 
-# Your code goes here
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,14 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =config("SECRET_KEY")
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(config("DEBUG", default=False)))
-
-ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(","),
-
+DEBUG = bool(int(config('DEBUG', default=False)))
+ALLOWED_HOSTS=['*']
 
 # Application definition
 
@@ -103,7 +95,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse(config("DATABASE_URL"))
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -141,6 +133,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -150,15 +149,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100
 }
-# CSRF_TRUSTED_ORIGINS = [
-#     'https://608f-86-62-2-249.ngrok-free.app/',
-# ]
+CSRF_TRUSTED_ORIGINS = [
+     'https://ce2a-95-214-210-112.ngrok-free.app/',
+ ]
 
 
 HOST_NAME=config("HOST_NAME")
+
 CONTRACT_URL="contracts"
 CONTRACT_ROOT=BASE_DIR /"contracts"
 
 BOT_TOKEN = config("BOT_TOKEN")
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000']
+

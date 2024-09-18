@@ -1,12 +1,12 @@
+import telegram
 from telegram import Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Filters, ConversationHandler
-
 from apps.telegram import states
 from apps.telegram.handlers import commands, common, registration
 from django.conf import settings
 
-
 bot = Bot(token=settings.BOT_TOKEN)
+
 
 dispatcher = Dispatcher(bot, None, workers=0)
 
